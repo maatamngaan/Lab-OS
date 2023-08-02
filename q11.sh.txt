@@ -1,0 +1,16 @@
+for file in $(find . -type f -name "*.c")
+do
+	prog_name=$(echo $file | cut -d'/' -f2 | cut -d'.' -f1)
+	prog_file=$(echo $file | cut -d'/' -f2)
+	gcc -o $prog_name $prog_file
+	if [ $(./$prog_name) == 20 ]
+	then
+		ans=10
+	elif [ $(./$prog_name) != 20 ]
+	then
+		ans=7
+	else
+		ans=5
+	fi
+	echo $prog_file $ans
+done
